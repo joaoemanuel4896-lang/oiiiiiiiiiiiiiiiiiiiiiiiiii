@@ -15,45 +15,24 @@ body {
     overflow-x: hidden;
 }
 
-/* FUNDO ROSA */
+/* FUNDO */
 
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    z-index: -3;
+    z-index: -2;
 
     background:
         radial-gradient(
-            circle at 15% 15%,
+            circle at top,
             rgba(255, 0, 128, 0.35),
-            transparent 30%
+            transparent 45%
         ),
-        radial-gradient(
-            circle at 85% 25%,
-            rgba(255, 77, 166, 0.25),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 50% 90%,
-            rgba(255, 0, 100, 0.20),
-            transparent 35%
-        );
-}
-
-/* brilho */
-
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -4;
-
-    background:
         linear-gradient(
             135deg,
             #050008,
-            #16000f,
+            #18000f,
             #050008
         );
 }
@@ -65,61 +44,49 @@ canvas {
     inset: 0;
     width: 100%;
     height: 100%;
-
     z-index: -1;
     pointer-events: none;
 }
 
-/* =========================
-   CAPA
-========================= */
+/* CAPA */
 
 .hero {
     min-height: 100vh;
 
     display: flex;
     flex-direction: column;
-
     justify-content: center;
     align-items: center;
 
     text-align: center;
 
     padding: 30px 20px;
-
-    position: relative;
 }
 
 .hero h1 {
     font-family: 'Great Vibes', cursive;
 
-    font-size: clamp(4rem, 9vw, 7rem);
+    font-size: clamp(4rem, 10vw, 7rem);
 
     color: #ff4da6;
 
     text-shadow:
         0 0 10px #ff4da6,
-        0 0 25px #ff4da6,
-        0 0 50px rgba(255, 77, 166, 0.7);
-
-    animation: aparecer 1.5s ease;
+        0 0 30px #ff4da6,
+        0 0 60px rgba(255, 77, 166, 0.7);
 }
 
 .hero p {
     margin-top: 20px;
 
-    max-width: 650px;
-
-    font-size: 1.15rem;
-
     color: #f5dce9;
+
+    font-size: 1.1rem;
 
     line-height: 1.8;
 }
 
-/* =========================
-   CONTADOR
-========================= */
+/* CONTADOR */
 
 .contador {
     display: flex;
@@ -138,28 +105,18 @@ canvas {
 
     padding: 20px 10px;
 
-    background: rgba(255, 255, 255, 0.07);
+    background: rgba(255,255,255,0.07);
 
-    border: 1px solid rgba(255, 77, 166, 0.45);
+    border: 1px solid rgba(255,77,166,0.4);
 
     border-radius: 20px;
 
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(12px);
 
     box-shadow:
-        0 0 20px rgba(255, 77, 166, 0.2),
-        inset 0 0 20px rgba(255, 77, 166, 0.05);
+        0 0 25px rgba(255,77,166,0.2);
 
-    color: #ffd9eb;
-
-    transition: 0.4s;
-}
-
-.box:hover {
-    transform: translateY(-8px) scale(1.05);
-
-    box-shadow:
-        0 0 35px rgba(255, 77, 166, 0.5);
+    text-align: center;
 }
 
 .box span {
@@ -171,18 +128,13 @@ canvas {
 
     color: #ff4da6;
 
-    text-shadow:
-        0 0 15px #ff4da6;
+    text-shadow: 0 0 15px #ff4da6;
 }
 
-/* =========================
-   SEÇÕES
-========================= */
+/* SEÇÕES */
 
 .section {
-    padding: 110px 10%;
-
-    position: relative;
+    padding: 100px 10%;
 }
 
 .titulo {
@@ -190,20 +142,17 @@ canvas {
 
     font-family: 'Great Vibes', cursive;
 
-    font-size: clamp(3.5rem, 7vw, 5rem);
+    font-size: 4.5rem;
 
     color: #ff4da6;
 
-    margin-bottom: 60px;
+    margin-bottom: 55px;
 
     text-shadow:
-        0 0 15px #ff4da6,
-        0 0 30px rgba(255, 77, 166, 0.5);
+        0 0 15px #ff4da6;
 }
 
-/* =========================
-   GALERIA
-========================= */
+/* GALERIA */
 
 .galeria {
     max-width: 1100px;
@@ -219,27 +168,25 @@ canvas {
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255,255,255,0.06);
 
     border-radius: 25px;
 
     overflow: hidden;
 
-    border: 1px solid rgba(255, 77, 166, 0.35);
+    border: 1px solid rgba(255,77,166,0.3);
 
     box-shadow:
-        0 0 30px rgba(255, 77, 166, 0.12);
+        0 0 30px rgba(255,77,166,0.12);
 
-    transition: 0.5s;
-
-    backdrop-filter: blur(10px);
+    transition: 0.4s;
 }
 
 .card:hover {
-    transform: translateY(-12px) scale(1.02);
+    transform: translateY(-10px);
 
     box-shadow:
-        0 0 40px rgba(255, 77, 166, 0.45);
+        0 0 40px rgba(255,77,166,0.4);
 }
 
 .card img {
@@ -250,27 +197,17 @@ canvas {
     object-fit: cover;
 
     display: block;
-
-    transition: 0.6s;
-}
-
-.card:hover img {
-    transform: scale(1.06);
 }
 
 .card p {
-    padding: 22px;
+    padding: 20px;
 
     text-align: center;
 
-    color: #ffb6d8;
-
-    font-size: 1rem;
+    color: #ff9acb;
 }
 
-/* =========================
-   CARTA
-========================= */
+/* CARTA */
 
 .carta {
     max-width: 900px;
@@ -280,13 +217,9 @@ canvas {
     padding: 45px;
 
     background:
-        linear-gradient(
-            145deg,
-            rgba(255, 77, 166, 0.12),
-            rgba(255, 255, 255, 0.04)
-        );
+        rgba(255,255,255,0.05);
 
-    border: 1px solid rgba(255, 77, 166, 0.35);
+    border: 1px solid rgba(255,77,166,0.3);
 
     border-radius: 30px;
 
@@ -294,43 +227,18 @@ canvas {
 
     font-size: 1.1rem;
 
-    color: #f7e8ef;
-
     box-shadow:
-        0 0 40px rgba(255, 77, 166, 0.15);
+        0 0 35px rgba(255,77,166,0.12);
 
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(12px);
 }
 
-/* =========================
-   RODAPÉ
-========================= */
+/* RODAPÉ */
 
 footer {
-    padding: 70px 20px;
+    padding: 60px 20px;
 
     text-align: center;
 
-    color: #ff8ac4;
-
-    font-size: 0.95rem;
-
-    border-top: 1px solid rgba(255, 77, 166, 0.2);
-}
-
-/* =========================
-   ANIMAÇÃO
-========================= */
-
-@keyframes aparecer {
-
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    color: #ff7abf;
 }
