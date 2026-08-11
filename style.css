@@ -1,262 +1,336 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #050008;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* FUNDO ROSA */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(255, 0, 128, 0.35),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 25%,
+            rgba(255, 77, 166, 0.25),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(255, 0, 100, 0.20),
+            transparent 35%
+        );
+}
 
-<head>
+/* brilho */
 
-    <meta charset="UTF-8">
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -4;
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    background:
+        linear-gradient(
+            135deg,
+            #050008,
+            #16000f,
+            #050008
+        );
+}
 
-    <title>Para Synara ❤️</title>
+/* CORAÇÕES */
 
-    <!-- Fontes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap"
-        rel="stylesheet"
-    >
+    z-index: -1;
+    pointer-events: none;
+}
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="recado.css">
-    <link rel="stylesheet" href="responsivo.css">
+/* =========================
+   CAPA
+========================= */
 
-</head>
+.hero {
+    min-height: 100vh;
 
+    display: flex;
+    flex-direction: column;
 
-<body>
+    justify-content: center;
+    align-items: center;
 
-    <!-- Fundo animado -->
-    <canvas id="canvas"></canvas>
+    text-align: center;
 
+    padding: 30px 20px;
 
-    <!-- =========================
-         CAPA
-    ========================== -->
+    position: relative;
+}
 
-    <section class="hero">
+.hero h1 {
+    font-family: 'Great Vibes', cursive;
 
-        <h1>Para minha Synara ❤️</h1>
+    font-size: clamp(4rem, 9vw, 7rem);
 
-        <p>
-            Desde que você entrou na minha vida,
-            tudo ficou mais bonito.
-        </p>
+    color: #ff4da6;
 
+    text-shadow:
+        0 0 10px #ff4da6,
+        0 0 25px #ff4da6,
+        0 0 50px rgba(255, 77, 166, 0.7);
 
-        <!-- CONTADOR -->
+    animation: aparecer 1.5s ease;
+}
 
-        <div class="contador">
+.hero p {
+    margin-top: 20px;
 
-            <div class="box">
-                <span id="dias">0</span>
-                Dias
-            </div>
+    max-width: 650px;
 
-            <div class="box">
-                <span id="horas">0</span>
-                Horas
-            </div>
+    font-size: 1.15rem;
 
-            <div class="box">
-                <span id="minutos">0</span>
-                Minutos
-            </div>
+    color: #f5dce9;
 
-            <div class="box">
-                <span id="segundos">0</span>
-                Segundos
-            </div>
+    line-height: 1.8;
+}
 
-        </div>
+/* =========================
+   CONTADOR
+========================= */
 
-    </section>
+.contador {
+    display: flex;
 
+    gap: 15px;
 
+    margin-top: 45px;
 
-    <!-- =========================
-         RECADO DO DIA
-    ========================== -->
+    flex-wrap: wrap;
 
-    <section class="section recado-section">
+    justify-content: center;
+}
 
-        <h2 class="titulo">
-            Recado de Hoje 💌
-        </h2>
+.box {
+    width: 120px;
 
+    padding: 20px 10px;
 
-        <div class="recado-card">
+    background: rgba(255, 255, 255, 0.07);
 
-            <div
-                class="envelope"
-                id="envelope"
-            >
-                💌
-            </div>
+    border: 1px solid rgba(255, 77, 166, 0.45);
 
+    border-radius: 20px;
 
-            <p
-                class="recado-data"
-                id="recadoData"
-            ></p>
+    backdrop-filter: blur(15px);
 
+    box-shadow:
+        0 0 20px rgba(255, 77, 166, 0.2),
+        inset 0 0 20px rgba(255, 77, 166, 0.05);
 
-            <p
-                class="recado-texto"
-                id="recadoTexto"
-            >
-                Clique no envelope para abrir seu recado ❤️
-            </p>
+    color: #ffd9eb;
 
+    transition: 0.4s;
+}
 
-            <button
-                class="abrir-recado"
-                id="abrirRecado"
-            >
-                Abrir meu recado ❤️
-            </button>
+.box:hover {
+    transform: translateY(-8px) scale(1.05);
 
-        </div>
+    box-shadow:
+        0 0 35px rgba(255, 77, 166, 0.5);
+}
 
-    </section>
+.box span {
+    display: block;
 
+    font-size: 2.2rem;
 
+    font-weight: 600;
 
-    <!-- =========================
-         GALERIA
-    ========================== -->
+    color: #ff4da6;
 
-    <section class="section">
+    text-shadow:
+        0 0 15px #ff4da6;
+}
 
-        <h2 class="titulo">
-            Minha Princesa 👑
-        </h2>
+/* =========================
+   SEÇÕES
+========================= */
 
+.section {
+    padding: 110px 10%;
 
-        <div class="galeria">
+    position: relative;
+}
 
+.titulo {
+    text-align: center;
 
-            <div class="card">
+    font-family: 'Great Vibes', cursive;
 
-                <img
-                    src="foto1.jpeg"
-                    alt="Nossa lembrança"
-                >
+    font-size: clamp(3.5rem, 7vw, 5rem);
 
-                <p>
-                    Você é linda em todos os momentos ❤️
-                </p>
+    color: #ff4da6;
 
-            </div>
+    margin-bottom: 60px;
 
+    text-shadow:
+        0 0 15px #ff4da6,
+        0 0 30px rgba(255, 77, 166, 0.5);
+}
 
+/* =========================
+   GALERIA
+========================= */
 
-            <div class="card">
+.galeria {
+    max-width: 1100px;
 
-                <img
-                    src="foto2.jpeg"
-                    alt="Nossa lembrança"
-                >
+    margin: auto;
 
-                <p>
-                    Seu sorriso ilumina meus dias ✨
-                </p>
+    display: grid;
 
-            </div>
+    grid-template-columns:
+        repeat(auto-fit, minmax(260px, 1fr));
 
+    gap: 30px;
+}
 
-        </div>
+.card {
+    background: rgba(255, 255, 255, 0.06);
 
-    </section>
+    border-radius: 25px;
 
+    overflow: hidden;
 
+    border: 1px solid rgba(255, 77, 166, 0.35);
 
-    <!-- =========================
-         CARTA
-    ========================== -->
+    box-shadow:
+        0 0 30px rgba(255, 77, 166, 0.12);
 
-    <section class="section">
+    transition: 0.5s;
 
-        <h2 class="titulo">
-            Uma Carta Para Você 💌
-        </h2>
+    backdrop-filter: blur(10px);
+}
 
+.card:hover {
+    transform: translateY(-12px) scale(1.02);
 
-        <div class="carta">
+    box-shadow:
+        0 0 40px rgba(255, 77, 166, 0.45);
+}
 
-            Amor da minha vida ❤️
+.card img {
+    width: 100%;
 
-            <br><br>
+    height: 450px;
 
-            Quero que você saiba que eu te amo muito.
-            Desde o primeiro momento em que te vi,
-            senti algo diferente.
+    object-fit: cover;
 
-            <br><br>
+    display: block;
 
-            Você é uma menina linda, especial,
-            gentil e dona de um sorriso que consegue
-            melhorar qualquer dia ruim.
+    transition: 0.6s;
+}
 
-            <br><br>
+.card:hover img {
+    transform: scale(1.06);
+}
 
-            Obrigado por estar comigo,
-            por me aturar até quando eu faço você passar
-            raiva kkkkk ❤️
+.card p {
+    padding: 22px;
 
-            <br><br>
+    text-align: center;
 
-            Cada conversa, cada sorriso e cada momento
-            ao seu lado faz eu gostar ainda mais de você.
+    color: #ffb6d8;
 
-            <br><br>
+    font-size: 1rem;
+}
 
-            Eu te amo mais do que consigo explicar
-            em palavras e quero continuar construindo
-            momentos incríveis ao seu lado.
+/* =========================
+   CARTA
+========================= */
 
-            <br><br>
+.carta {
+    max-width: 900px;
 
-            Você é uma das melhores coisas que já
-            aconteceram na minha vida.
+    margin: auto;
 
-            <br><br>
+    padding: 45px;
 
-            ❤️ Eu te amo, Synara ❤️
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 77, 166, 0.12),
+            rgba(255, 255, 255, 0.04)
+        );
 
-        </div>
+    border: 1px solid rgba(255, 77, 166, 0.35);
 
-    </section>
+    border-radius: 30px;
 
+    line-height: 2;
 
+    font-size: 1.1rem;
 
-    <!-- =========================
-         RODAPÉ
-    ========================== -->
+    color: #f7e8ef;
 
-    <footer>
+    box-shadow:
+        0 0 40px rgba(255, 77, 166, 0.15);
 
-        Feito com amor por João Emanuel ❤️
+    backdrop-filter: blur(15px);
+}
 
-    </footer>
+/* =========================
+   RODAPÉ
+========================= */
 
+footer {
+    padding: 70px 20px;
 
+    text-align: center;
 
-    <!-- =========================
-         JAVASCRIPT
-    ========================== -->
+    color: #ff8ac4;
 
-    <script src="contador.js"></script>
+    font-size: 0.95rem;
 
-    <script src="coracoes.js"></script>
+    border-top: 1px solid rgba(255, 77, 166, 0.2);
+}
 
-    <script src="fogos.js"></script>
+/* =========================
+   ANIMAÇÃO
+========================= */
 
-    <script src="recados.js"></script>
+@keyframes aparecer {
 
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
 
-</body>
-
-</html>
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
